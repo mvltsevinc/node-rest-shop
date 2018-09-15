@@ -1,0 +1,4 @@
+�lk olarak terminalde npm init yeni bir proje olusturduk.
+Daha sonra npm install --save express ile express i kurduk. Express frameworkü yükledik daha kolay inşa etmek için
+
+Http packageni eklememizin nedeni bu package bize server olusturmak için bazı fonksiyonlar sağlıyor.
