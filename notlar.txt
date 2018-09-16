@@ -2,3 +2,14 @@
 Daha sonra npm install --save express ile express i kurduk. Express frameworkü yükledik daha kolay inşa etmek için
 
 Http packageni eklememizin nedeni bu package bize server olusturmak için bazı fonksiyonlar sağlıyor.
+
+Projede bir değişiklik yapınca sürekli restart atmadan direkt olarak yaptıgımız değişikligin uygulanması için paket yükledik.
+npm install --save-dev nodemon   (dev -> sadece development dependecy için oldugunu belirtiyor)
+serveri çalıştırırken nodemon server.js şeklinde çalıştırcaksın.Ancak hata verecek çünkü package.json içindeki scriptlerde start yok.Onu ekleedik.
+  "start": "nodemon server.js" ekliyoruz. Daha sonra npm start ile serveri başlatıyoruz.
+
+Daha sonra logging paketini ekledik. Log requestleri için.
+npm install --save morgan
+
+
+
