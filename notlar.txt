@@ -11,5 +11,6 @@ serveri çalıştırırken nodemon server.js şeklinde çalıştırcaksın.Ancak
 Daha sonra logging paketini ekledik. Log requestleri için.
 npm install --save morgan
 
-
+gelen requestlerin body sini parse etmek için paket yükledik.
+npm install --save body-parser
 
