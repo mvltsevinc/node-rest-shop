@@ -14,3 +14,5 @@ npm install --save morgan
 gelen requestlerin body sini parse etmek için paket yükledik.
 npm install --save body-parser
 
+Veritabanı işlemlerini daha kolay yapabilmek için mongoose paketini yükledik.
+npm install --save mongoose

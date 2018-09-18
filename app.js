@@ -2,15 +2,24 @@ const express = require("express");
 const app = express(); // Express uygulamasını app ye attık.Böylece app ile express deki tum fonksiyonları kullanabilirsin.
 const morgan = require("morgan"); // Logging package
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 
 const productRoutes = require("./api/routes/products");
 const orderRoutes = require("./api/routes/orders");
+
+mongoose.connect(
+  "mongodb+srv://admin:" +
+    process.env.MONGO_ATLAS_PW +
+    "@node-rest-shop-crzpa.mongodb.net/test?retryWrites=true",
+  { useMongoClient: true }
+);
 
 app.use(morgan("dev")); // Loglama için
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); // Requestten json datayı kolay olarak çıkartmamıza yarıyor
 
-app.use((req, res, next) => { // Diger domainlerin de bu api ye erisebilmesi icin headerları ekledik.
+app.use((req, res, next) => {
+  // Diger domainlerin de bu api ye erisebilmesi icin headerları ekledik.
   res.header("Access-Control-Allow-Origin", "*"); // Ne zaman bir response göndereceğimiz zaman bunu ekler.Burada direkt olarak response göndermez. Handling CORS için bu.
   res.header(
     "Access-Control-Allow-Headers",
