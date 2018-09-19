@@ -12,7 +12,7 @@ router.get("/", (req, res, next) => {
     .then(docs => {
       console.log(docs);
       // if (docs.length >= 0) {
-        res.status(200).json(docs);
+      res.status(200).json(docs);
       // } else {
       //   res.status(404).json({
       //     message: "No entries found!"
@@ -71,8 +71,23 @@ router.get("/:productId", (req, res, next) => {
 
 // Update a product
 router.patch("/:productId", (req, res, next) => {
-  //const id = req.params.productId; // $set yazılması zorunlu.$set den sonra key value şeklinde objenin yeni değerlerini yazıyoruz.
-  //Product.update({_id:id}, { $set: {name: req.body.newName, price: req.body.newPrice}})
+  const id = req.params.productId; // $set yazılması zorunlu.$set den sonra key value şeklinde objenin yeni değerlerini yazıyoruz.
+  const updateOps = {};
+  for (const ops of req.body) {
+    updateOps[ops.propName] = ops.value;
+  }
+  Product.update({ _id: id }, { $set: updateOps })
+    .exec()
+    .then(result => {
+      console.log(result);
+      res.status(200).json(result);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
 });
 
 // Delete a product
