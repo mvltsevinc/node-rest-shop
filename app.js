@@ -11,7 +11,10 @@ mongoose.connect(
   "mongodb+srv://admin:" +
     process.env.MONGO_ATLAS_PW +
     "@node-rest-shop-crzpa.mongodb.net/test?retryWrites=true",
-  { useMongoClient: true }
+  {
+    useMongoClient: true,
+    useNewUrlParser: true
+  }
 );
 
 app.use(morgan("dev")); // Loglama için
