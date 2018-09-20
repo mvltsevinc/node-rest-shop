@@ -16,3 +16,5 @@ npm install --save body-parser
 
 Veritabanı işlemlerini daha kolay yapabilmek için mongoose paketini yükledik.
 npm install --save mongoose
+
+exec() i kullanmamazın nedeni ondan önce yazılan bazı methodlar(find) real promise vermiyorlar. Yani then methodları var ama catch metodları yok. Exec ile chain ederek real promise haline getiriyoruz ve catch metodunu kullanabiliyoruz.
