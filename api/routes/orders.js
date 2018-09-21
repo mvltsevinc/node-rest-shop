@@ -10,6 +10,7 @@ const Product = require("../models/product");
 router.get("/", (req, res, next) => {
   Order.find()
     .select("product quantity _id")
+    .populate("product", "name") // ilk parametre baglayacagin alan , ikinci parametre populate ettigin icin select de hangi alanlari getirmek istiyorsun
     .exec()
     .then(docs => {
       res.status(200).json({
@@ -75,6 +76,7 @@ router.post("/", (req, res, next) => {
 // Get a Order / Order Detail
 router.get("/:orderId", (req, res, next) => {
   Order.findById(req.params.orderId)
+    .populate("product") // ilk parametre baglayacagin alan , ikinci parametre populate ettigin icin select de hangi alanlari getirmek istiyorsun
     .exec()
     .then(order => {
       if (!order) {
