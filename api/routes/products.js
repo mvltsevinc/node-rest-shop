@@ -2,6 +2,33 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose"); // yeni nesne olustururken id icin ekledik
+const multer = require("multer");
+
+//Hangi dosyaların saklanacağı belirtildi.
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, "uploads/");
+  },
+  filename: function(req, file, cb) {
+    cb(null, Date.now() + "-" + file.originalname);
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+    cb(null, true); //store the file
+  } else {
+    cb(new Error("Just png or jpeg file"), false); //reject the file
+  }
+};
+
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5 // 5 MB
+  },
+  fileFilter : fileFilter
+}); // Initialize ediyoz. Parametre olarak configürasyon veriyoruz.
 
 const Product = require("../models/product");
 
@@ -41,7 +68,10 @@ router.get("/", (req, res, next) => {
 });
 
 // Create a new product
-router.post("/", (req, res, next) => {
+router.post("/", upload.single("productImage"), (req, res, next) => {
+  //productImage resmi tutmasi icin verdik.
+  console.log(req.file);
+
   const product = new Product({
     _id: new mongoose.Types.ObjectId(),
     name: req.body.name,

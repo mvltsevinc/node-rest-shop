@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express(); // Express uygulamasını app ye attık.Böylece app ile express deki tum fonksiyonları kullanabilirsin.
 const morgan = require("morgan"); // Logging package
-const bodyParser = require("body-parser");
+const bodyParser = require("body-parser"); // url i ve body yi parcalamak icin
 const mongoose = require("mongoose");
 
 const productRoutes = require("./api/routes/products");
