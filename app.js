@@ -18,6 +18,7 @@ mongoose.connect(
 );
 
 app.use(morgan("dev")); // Loglama için
+app.use("/uploads",express.static("uploads")); // Upload klasöürünü public yapmak icin. boylece localhost:3000\uploads\1537651479855-3.PNG yazarak dosyayı görebiliyoruz
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); // Requestten json datayı kolay olarak çıkartmamıza yarıyor
 
