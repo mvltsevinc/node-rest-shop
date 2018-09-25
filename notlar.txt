@@ -21,3 +21,6 @@ exec() i kullanmamazın nedeni ondan önce yazılan bazı methodlar(find) real p
 
 Resim yükleme için package ekleedik
 npm install --save multer // Body-parser tarafından parse edilemeyen body ler için kullanıyoruz. Form verisi gibi
+
+Parolayı encrypt yapmak için package ekledik.
+Hata aldım.

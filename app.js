@@ -4,8 +4,10 @@ const morgan = require("morgan"); // Logging package
 const bodyParser = require("body-parser"); // url i ve body yi parcalamak icin
 const mongoose = require("mongoose");
 
+// import ediyoruz
 const productRoutes = require("./api/routes/products");
 const orderRoutes = require("./api/routes/orders");
+const userRoutes = require("./api/routes/user");
 
 mongoose.connect(
   "mongodb+srv://admin:" +
@@ -41,6 +43,7 @@ app.use((req, res, next) => {
 // Routes which should handle request
 app.use("/products", productRoutes);
 app.use("/orders", orderRoutes);
+app.use("/user",userRoutes);
 
 app.use((req, res, next) => {
   const error = new Error("Not Found!");
